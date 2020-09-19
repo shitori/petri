@@ -62,7 +62,7 @@ if __name__ == '__main__':
                     m[name]=mm
                 else:
                     print("ajouter moment matrice mg")
-                mg[pointeur][name] = 1
+                mg[pointeur][name] = i
     print(m)
     print(mg)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
