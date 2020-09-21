@@ -23,16 +23,17 @@ if __name__ == '__main__':
         2: {0: 0, 1: 1, 2: 0},
         3: {0: 3, 1: 0, 2: 0}
     }
-    m0 = {0: 3, 1: 0, 2: 0}
+    m0 = {0: 0, 1: 1, 2: 0}
     mg = dict()
     ml = [0]
     m = {
-        0: {0: 3, 1: 0, 2: 0}
+        0: m0
     }
     while ml:
         pointeur = ml[0]
+        print("avec moment : " + str(pointeur))
         ml.remove(pointeur)
-        #print(pointeur)
+        # print(pointeur)
         if pointeur not in mg:
             mg[pointeur] = {}
 
@@ -49,20 +50,22 @@ if __name__ == '__main__':
                 mm = dict()
                 for j in range(len(pre[i])):
                     mm[j] = m[pointeur][j] - pre[i][j] + post[i][j]
-                #print("avec transition " + str(i) + ':' + str(mm))
+                # print("avec transition " + str(i) + ':' + str(mm))
                 same = False
                 for k in range(len(m)):
                     if mm == m[k]:
                         same = True
                         name = k
+                        print("Nouveau franchissement entre " + str(pointeur) + " et " + str(name))
+                        mg[pointeur][name] = i
                 if not same:
                     name = len(mg)
-                    print("new moment matrice mg")
+                    print("moment " + str(name) + " découvert grace à " + str(pointeur))
                     ml.append(name)
-                    m[name]=mm
-                else:
-                    print("ajouter moment matrice mg")
-                mg[pointeur][name] = i
+                    m[name] = mm
+                    print("Nouveau franchissement entre " + str(pointeur) + " et " + str(name))
+                    mg[pointeur][name] = i
+
     print(m)
     print(mg)
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
